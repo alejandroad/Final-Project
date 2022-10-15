@@ -1,4 +1,3 @@
 # Final-Project
 Final project for Mobile Development
-
-Akram can access this repo.
+ Created branch for seperate work
