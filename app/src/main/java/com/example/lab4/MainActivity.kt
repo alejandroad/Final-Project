@@ -1,11 +1,13 @@
 package com.example.lab4
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -26,6 +28,8 @@ import java.util.concurrent.Executors
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private lateinit var listIntent: Intent
 
     private var imageCapture: ImageCapture? = null
 
@@ -51,11 +55,16 @@ class MainActivity : AppCompatActivity() {
                 Constants.REQUEST_CODE_PERMISSIONS
             )
         }
-
+        binding.btnToAlbum.setOnClickListener{launchAlbums()}
         binding.btnTakePhoto.setOnClickListener()
         {
             takePhoto()
         }
+    }
+
+    private fun launchAlbums(){
+        listIntent = Intent(this, AlbumActivity::class.java)
+        startActivity(listIntent)
     }
 
 
