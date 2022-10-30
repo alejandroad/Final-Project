@@ -6,4 +6,6 @@
     <string name="enter_your_password">Enter your Password</string>
     <string name="enter_your_email">Enter your email</string>
     <string name="no_account_sign_up_here">No account? <b>Sign up here!</b></string>
+    <string name="signup">SignUp</string>
+    <string name="sign_up">Sign Up</string>
 </resources>
