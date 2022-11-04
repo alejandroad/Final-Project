@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Lab4</string>
     <string name="face_layout_desc">face layout for selfie pictures</string>
+    <string name="login">Login</string>
+    <string name="log_in_to_your_account">Log in to your account</string>
+    <string name="enter_your_password">Enter your Password</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="no_account_sign_up_here">No account? <b>Sign up here!</b></string>
+    <string name="signup">SignUp</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="welcome_msg">Welcome!</string>
+    <string name="logout">Log out</string>
+    <string name="create_new_account">Create a new account</string>
+    <string name="hello">Hello</string>
 </resources>
