@@ -73,13 +73,14 @@
 
     <TextView
         android:id="@+id/noAccount"
+        style="@style/TextAppearance.AppCompat.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/no_account_sign_up_here"
         android:layout_alignParentBottom="true"
-        android:padding="5dp"
         android:layout_centerHorizontal="true"
-        style="@style/TextAppearance.AppCompat.Caption">
+        android:padding="5dp"
+        android:background="?attr/selectableItemBackground"
+        android:text="@string/no_account_sign_up_here">
 
     </TextView>
 
