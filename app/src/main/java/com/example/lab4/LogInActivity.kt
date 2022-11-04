@@ -1,16 +1,11 @@
 package com.example.lab4
 
-import android.app.ProgressDialog
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
-import android.util.Patterns
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
-import com.example.lab4.databinding.ActivityLogInBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -19,115 +14,77 @@ class LogInActivity : AppCompatActivity() {
     // Declare auth
     private lateinit var auth: FirebaseAuth
 
-    // view binding
-    private lateinit var binding: ActivityLogInBinding
-
-    // action bar
-    private lateinit var actionBar: ActionBar
-
-    // process dialog
-    private lateinit var progressDialog:ProgressDialog
-
-    // account data
-    private var email = ""
-    private var password = ""
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLogInBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        // configure action bar
-        actionBar = supportActionBar!!
-        actionBar.title = "Login"
-
-        // configure process dialog
-        progressDialog = ProgressDialog(this)
-        progressDialog.setTitle("One moment...")
-        progressDialog.setMessage("Logging in")
-        progressDialog.setCanceledOnTouchOutside(false)
+        setContentView(R.layout.activity_log_in)
 
         // init firebase auth
         auth = Firebase.auth
+    }
 
-        checkUser()
+    public override fun onStart() {
+        super.onStart()
 
-        // handle user is trying to sign up
-        binding.noAccount.setOnClickListener {
-            startActivity(Intent(this, SignUpActivity::class.java))
-        }
-
-        // user was not logged in
-        binding.loginButton.setOnClickListener {
-            // before trying to log in, validate data
-            validateData()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+        if(currentUser != null) {
+            reload()
         }
     }
 
-    private fun validateData() {
-        email = binding.emailA.text.toString().trim()
-        password = binding.PasswordA.text.toString().trim()
+    private fun createAccount(email: String, password: String) {
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            // incorrect email semantics
-            binding.emailA.error = "Incorrect email semantics"
-        } else if (TextUtils.isEmpty(password)) {
-            // the user did not input a password
-            binding.PasswordA.error = "No password imputed"
-        } else {
-            // data is validated
-            signIn()
-        }
-    }
-
-    private fun signIn() {
-        // show progress bar
-        progressDialog.show()
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
-
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
             if(task.isSuccessful) {
-                // successful login
-                progressDialog.dismiss()
-
-                // get user info
-                val user = auth.currentUser
-                val email = auth.currentUser?.email
-
-                Toast.makeText(this, "LoggedIn as $email", Toast.LENGTH_SHORT).show()
+                // User created Account successfully
                 Log.d("SUCCESS_MSG", "createUserWithEmail:success")
-
-                // open profile activity
-                startActivity(Intent(this, ProfileActivity::class.java))
-                finish()
+                val user = auth.currentUser
+                updateUI(user)
             } else {
-                // unsuccessful
-                progressDialog.dismiss()
-                Toast.makeText(this, "Log in failed due to ${task.exception}", Toast.LENGTH_SHORT).show()
+                // User did not create account successfully
+                // Display error message to the user
                 Log.w("ERROR_MSG", "createUserWithEmail:failure", task.exception)
+                Toast.makeText(baseContext, "Authentication Failed.", Toast.LENGTH_SHORT).show()
+                updateUI(null)
             }
         }
     }
 
-    private fun checkUser() {
-        // if the user is already logged in, go to profile activity that has navigation
-        // to the rest of the application
-
-        val currentUser = auth.currentUser
-        if(currentUser != null) {
-            // this means they are logged in
-            // proceed to profile activity
-            startActivity(Intent(this, ProfileActivity::class.java))
-            finish()
-        }
+    private fun signIn(email: String, password: String) {
+        // [START sign_in_with_email]
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("SUCCESS_MSG", "signInWithEmail:success")
+                    val user = auth.currentUser
+                    updateUI(user)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("ERROR_MSG", "signInWithEmail:failure", task.exception)
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                    updateUI(null)
+                }
+            }
+        // [END sign_in_with_email]
     }
 
-//    private fun sendEmailVerification() {
-//        // [START send_email_verification]
-//        val user = auth.currentUser!!
-//        user.sendEmailVerification()
-//            .addOnCompleteListener(this) { task ->
-//                // Email Verification sent
-//            }
-//        // [END send_email_verification]
-//    }
+    private fun sendEmailVerification() {
+        // [START send_email_verification]
+        val user = auth.currentUser!!
+        user.sendEmailVerification()
+            .addOnCompleteListener(this) { task ->
+                // Email Verification sent
+            }
+        // [END send_email_verification]
+    }
+
+    private fun updateUI(user: FirebaseUser?) {
+
+    }
+
+    private fun reload() {
+
+    }
 }
