@@ -8,4 +8,7 @@
     <string name="no_account_sign_up_here">No account? <b>Sign up here!</b></string>
     <string name="signup">SignUp</string>
     <string name="sign_up">Sign Up</string>
+    <string name="welcome_msg">Welcome!</string>
+    <string name="logout">Logout</string>
+    <string name="create_a_new_account">Create a new account</string>
 </resources>
