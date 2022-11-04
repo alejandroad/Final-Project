@@ -14,22 +14,20 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="@string/signup"
-        style="@style/TextAppearance.MaterialComponents.Headline4">
-    </TextView>
+        style="@style/TextAppearance.MaterialComponents.Headline4"></TextView>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="@string/create_a_new_account"
+        android:text="@string/create_new_account"
         android:layout_below="@+id/Login"
-        style="@style/TextAppearance.AppCompat.Caption">
-    </TextView>
+        style="@style/TextAppearance.AppCompat.Caption"></TextView>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailB"
         android:layout_above="@+id/PasswordB"
-        android:layout_marginBottom = "10dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -68,8 +66,6 @@
         android:layout_height="wrap_content"
         android:text="@string/sign_up"
         android:layout_below="@+id/PasswordB"
-        android:layout_marginTop="10dp"
-        >
-    </Button>
+        android:layout_marginTop="10dp"></Button>
 
 </RelativeLayout>
