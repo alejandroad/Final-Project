@@ -1,6 +1,10 @@
 package com.example.lab4
 
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -15,5 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        
+        startActivity(Intent(this, LogInActivity::class.java))
     }
 }

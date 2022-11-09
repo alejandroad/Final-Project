@@ -30,11 +30,23 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".LogInActivity">
+
+        </activity>
+        <activity android:name=".SignUpActivity">
+
+        </activity>
+        <activity android:name=".ProfileActivity">
+
+        </activity>
+
+
         <activity android:name=".AlbumActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
 
     </application>
 
