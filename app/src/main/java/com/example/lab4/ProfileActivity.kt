@@ -39,6 +39,10 @@ class ProfileActivity : AppCompatActivity() {
             auth.signOut()
             checkUser()
         }
+
+        binding.camera.setOnClickListener {
+            startActivity(Intent(this, CameraActivity::class.java))
+        }
     }
 
     private fun checkUser() {

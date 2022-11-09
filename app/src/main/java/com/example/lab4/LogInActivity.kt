@@ -120,14 +120,4 @@ class LogInActivity : AppCompatActivity() {
             finish()
         }
     }
-
-//    private fun sendEmailVerification() {
-//        // [START send_email_verification]
-//        val user = auth.currentUser!!
-//        user.sendEmailVerification()
-//            .addOnCompleteListener(this) { task ->
-//                // Email Verification sent
-//            }
-//        // [END send_email_verification]
-//    }
 }
