@@ -28,6 +28,8 @@ class CameraActivity : AppCompatActivity() {
 
     private var imageCapture: ImageCapture? = null
 
+    private lateinit var cameraFacing: CameraSelector
+
     private lateinit var outputDirectory: File
 
     private lateinit var cameraExecutor: ExecutorService
@@ -41,6 +43,8 @@ class CameraActivity : AppCompatActivity() {
 
         outputDirectory = getOutputDirectory()
 
+        cameraFacing = CameraSelector.DEFAULT_FRONT_CAMERA
+
         cameraExecutor = Executors.newSingleThreadExecutor()
         if (allPermissionGranted()) {
             startCamera()
@@ -51,10 +55,23 @@ class CameraActivity : AppCompatActivity() {
             )
         }
 
+        binding.btnFlipCamera.setOnClickListener()
+        {
+            flipCamera()
+        }
         binding.btnTakePhoto.setOnClickListener()
         {
             takePhoto()
         }
+    }
+
+    private fun flipCamera() {
+        cameraFacing = if (cameraFacing == CameraSelector.DEFAULT_BACK_CAMERA) {
+            CameraSelector.DEFAULT_FRONT_CAMERA
+        } else {
+            CameraSelector.DEFAULT_BACK_CAMERA
+        }
+        startCamera()
     }
 
 
@@ -114,14 +131,13 @@ class CameraActivity : AppCompatActivity() {
                 }
 
             imageCapture = ImageCapture.Builder().build()
-            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
             try {
 
                 cameraProvider.unbindAll()
 
                 cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview, imageCapture
+                    this, cameraFacing, preview, imageCapture
                 )
 
             } catch (e: Exception) {
