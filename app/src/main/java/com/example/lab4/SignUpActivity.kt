@@ -88,6 +88,7 @@ class SignUpActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) {task ->
 
             if(task.isSuccessful) {
+                sendEmailVerification()
                 // user created account successfully
                 progressDialog.dismiss()
                 val user = auth.currentUser
@@ -109,5 +110,15 @@ class SignUpActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed() // go back to previous activity
         return super.onSupportNavigateUp()
+    }
+
+    private fun sendEmailVerification() {
+        // [START send_email_verification]
+        val user = auth.currentUser!!
+        user.sendEmailVerification()
+            .addOnCompleteListener(this) { task ->
+                // Email Verification sent
+            }
+        // [END send_email_verification]
     }
 }

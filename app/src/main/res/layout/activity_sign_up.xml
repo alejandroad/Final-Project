@@ -72,4 +72,31 @@
         >
     </Button>
 
+    <TextView
+        android:id="@+id/password_requirements"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/SignUpButton"
+        android:layout_marginTop="10dp"
+        android:text="@string/password_requirements">
+    </TextView>
+
+    <TextView
+        android:id="@+id/requirement_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password_requirements"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/bullet">
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/requirement_one"
+        android:textSize="10dp"
+        android:layout_toRightOf="@id/requirement_one">
+
+    </TextView>
 </RelativeLayout>
