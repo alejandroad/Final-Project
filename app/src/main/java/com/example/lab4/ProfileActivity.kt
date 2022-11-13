@@ -43,6 +43,9 @@ class ProfileActivity : AppCompatActivity() {
         binding.camera.setOnClickListener {
             startActivity(Intent(this, CameraActivity::class.java))
         }
+        binding.albumsBtn.setOnClickListener {
+            startActivity(Intent(this, AlbumActivity::class.java))
+        }
     }
 
     private fun checkUser() {

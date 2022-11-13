@@ -37,6 +37,10 @@
         <activity android:name=".SignUpActivity">
 
         </activity>
+        <activity android:name=".SlideshowActivity">
+
+        </activity>
+
         <activity android:name=".ProfileActivity">
 
         </activity>
