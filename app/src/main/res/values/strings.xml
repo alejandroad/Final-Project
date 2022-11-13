@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab4</string>
+    <string name="app_name">FaceShift</string>
     <string name="face_layout_desc">face layout for selfie pictures</string>
     <string name="login">Login</string>
     <string name="log_in_to_your_account">Log in to your account</string>
@@ -17,8 +17,10 @@
     <string name="hello">Hello</string>
     <string name="create_a_new_account">Create a new account</string>
     <string name="camera">Camera</string>
+    <string name="albums">Albums</string>
     <string name="password_requirements">Password Requirements</string>
     <string name="bullet">•</string>
     <string name="requirement_one">Password must be 8 characters long</string>
-
+    <string name="Share">Share</string>
+    <string name="Back">Back</string>
 </resources>
