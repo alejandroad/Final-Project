@@ -33,7 +33,12 @@ public class SlideshowActivity : AppCompatActivity() {
                 delay(500L)
             }
         }
-
+        binding.backButton.setOnClickListener {
+        startActivity(Intent(this, AlbumActivity::class.java))
+    }
+        binding.shareButton.setOnClickListener {
+            startActivity(Intent(this, AlbumActivity::class.java))
+        }
         // Enable up button for backward navigation
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
