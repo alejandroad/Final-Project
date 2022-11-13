@@ -10,6 +10,9 @@
     <string name="sign_up">Sign Up</string>
     <string name="welcome_msg">Welcome!</string>
 
+    <string name="channel_name">Main</string>
+    <string name="notification_title">Take daily picture!</string>
+    <string name="notification_text">Don\'t forget to take your daily picture!</string>
     <string name="logout">Logout</string>
     <string name="hello">Hello</string>
     <string name="create_a_new_account">Create a new account</string>
