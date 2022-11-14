@@ -2,10 +2,10 @@ package com.example.lab4
 
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -14,13 +14,14 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.lab4.databinding.ActivityCameraBinding
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import java.io.File
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.Executor
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+
 
 class CameraActivity : AppCompatActivity() {
 
@@ -34,14 +35,19 @@ class CameraActivity : AppCompatActivity() {
 
     private lateinit var cameraExecutor: ExecutorService
 
+    private lateinit var storageRef: StorageReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        storageRef = FirebaseStorage.getInstance().reference
 
-        outputDirectory = getOutputDirectory()
+        imagesRef =
+
+
+            outputDirectory = getOutputDirectory()
 
         cameraFacing = CameraSelector.DEFAULT_FRONT_CAMERA
 
@@ -104,6 +110,19 @@ class CameraActivity : AppCompatActivity() {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                     val savedUri = Uri.fromFile(photoFile)
                     val msg = "Photo Saved"
+                    val picRef: StorageReference =
+                        storageRef.child("images/${photoFile.name}")
+                    val uploadTask = picRef.putFile(savedUri)
+                    uploadTask.addOnSuccessListener {
+
+                        storageRef.child("upload/${photoFile.name}").downloadUrl.addOnSuccessListener {
+                            Log.e("Firebase", "download passed")
+                        }.addOnFailureListener {
+                            Log.e("Firebase", "Failed in downloading")
+                        }
+                    }.addOnFailureListener {
+                        Log.e("Firebase", "Image Upload fail")
+                    }
 
                     Toast.makeText(this@CameraActivity, "$msg $savedUri", Toast.LENGTH_LONG).show()
                 }
