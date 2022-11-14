@@ -14,6 +14,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.lab4.databinding.ActivityCameraBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
@@ -44,7 +45,7 @@ class CameraActivity : AppCompatActivity() {
 
         storageRef = FirebaseStorage.getInstance().reference
 
-        
+
 
 
         outputDirectory = getOutputDirectory()
@@ -108,17 +109,20 @@ class CameraActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+                    val userID = FirebaseAuth.getInstance().currentUser?.uid
                     val savedUri = Uri.fromFile(photoFile)
                     val msg = "Photo Saved"
                     val picRef: StorageReference =
-                        storageRef.child("images/${photoFile.name}")
+                        storageRef.child("users/${userID}/images/${photoFile.name}")
                     val uploadTask = picRef.putFile(savedUri)
                     uploadTask.addOnSuccessListener {
 
                         storageRef.child("upload/${photoFile.name}").downloadUrl.addOnSuccessListener {
-                            Log.e("Firebase", "download passed")
-                        }.addOnFailureListener {
-                            Log.e("Firebase", "Failed in downloading")
+
+                            // TODO: implement download success and failure behaviors
+//                            Log.e("Firebase", "download passed")
+//                        }.addOnFailureListener {
+//                            Log.e("Firebase", "Failed in downloading")
                         }
                     }.addOnFailureListener {
                         Log.e("Firebase", "Image Upload fail")
