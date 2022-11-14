@@ -44,10 +44,10 @@ class CameraActivity : AppCompatActivity() {
 
         storageRef = FirebaseStorage.getInstance().reference
 
-        imagesRef =
+        
 
 
-            outputDirectory = getOutputDirectory()
+        outputDirectory = getOutputDirectory()
 
         cameraFacing = CameraSelector.DEFAULT_FRONT_CAMERA
 

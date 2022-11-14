@@ -53,8 +53,8 @@ class ProfileActivity : AppCompatActivity() {
 
         if(user != null) {
             // user is logged in
-            val email = user.email
-            binding.welcomeTV.text = email
+            val text = "Logged in as ${user.email}"
+            binding.loginMsg.text = text
         } else {
             // user is not logged in
             startActivity(Intent(this, LogInActivity::class.java))

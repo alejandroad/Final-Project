@@ -10,6 +10,9 @@
     <string name="sign_up">Sign Up</string>
     <string name="welcome_msg">Welcome!</string>
 
+    <string name="channel_name">Main</string>
+    <string name="notification_title">Take daily picture!</string>
+    <string name="notification_text">Don\'t forget to take your daily picture!</string>
     <string name="logout">Logout</string>
     <string name="hello">Hello</string>
 
@@ -24,4 +27,5 @@
     <string name="requirement_one">Password must be 8 characters long</string>
     <string name="Share">Share</string>
     <string name="Back">Back</string>
+    <string name="login_user_msg">Logged in as $email</string>
 </resources>

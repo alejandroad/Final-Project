@@ -19,17 +19,20 @@
 
     </TextView>
 
-    <Button
-        android:id="@+id/logout_btn"
-        android:layout_marginTop="20dp"
+    <TextView
+        android:id="@+id/login_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/logout">
+        android:text="@string/login_user_msg"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"
+        style="@style/TextAppearance.MaterialComponents.Headline4">
 
-    </Button>
+    </TextView>
 
     <Button
         android:id="@+id/camera"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/camera">
@@ -41,6 +44,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/albums">
+
+    </Button>
+
+    <Button
+        android:id="@+id/logout_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logout">
 
     </Button>
 
