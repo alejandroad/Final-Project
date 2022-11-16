@@ -51,7 +51,7 @@ class ProfileActivity : AppCompatActivity() {
     private fun checkUser() {
         val user = auth.currentUser
 
-        if(user != null) {
+        if (user != null) {
             // user is logged in
             val text = "Logged in as ${user.email}"
             binding.loginMsg.text = text
