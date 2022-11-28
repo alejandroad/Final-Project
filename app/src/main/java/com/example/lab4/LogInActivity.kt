@@ -57,6 +57,11 @@ class LogInActivity : AppCompatActivity() {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
+        // handle user forgot their password
+        binding.forgotPassword.setOnClickListener {
+            auth.sendPasswordResetEmail("alejandroariasdiaz09@gmail.com")
+        }
+
         // user was not logged in
         binding.loginButton.setOnClickListener {
             // before trying to log in, validate data
