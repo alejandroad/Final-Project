@@ -24,4 +24,5 @@
     <string name="Share">Share</string>
     <string name="Back">Back</string>
     <string name="login_user_msg">Logged in as $email</string>
+    <string name="forgot_password_click_here">Forgot password? <b>Click here!</b></string>
 </resources>
