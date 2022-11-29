@@ -38,7 +38,7 @@ object Datasource {
         R.drawable.img_29,
     )
 
-    val albumLibrary: List<Album> = listOf<Album>(
+    val albumLibrary: MutableList<Album> = mutableListOf<Album>(
         Album(
             images_1,
             "Test Album"
