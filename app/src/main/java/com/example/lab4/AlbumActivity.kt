@@ -10,6 +10,7 @@ import com.example.lab4.adapter.AlbumCardAdapter
 import com.example.lab4.adapter.Listener
 import com.example.lab4.databinding.ActivityAlbumListBinding
 
+
 public class AlbumActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAlbumListBinding
@@ -31,7 +32,7 @@ public class AlbumActivity : AppCompatActivity() {
         binding.gridRecyclerView.adapter = AlbumCardAdapter(applicationContext, albumlistener)
 
         // Specify fixed size to improve performance
-        binding.gridRecyclerView.setHasFixedSize(true)
+        //binding.gridRecyclerView.setHasFixedSize(true)
 
         // Enable up button for backward navigation
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
