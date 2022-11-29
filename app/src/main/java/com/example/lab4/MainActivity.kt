@@ -1,6 +1,7 @@
 package com.example.lab4
 
 
+import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -16,6 +17,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 
 import com.example.lab4.databinding.ActivityMainBinding
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,6 +31,17 @@ class MainActivity : AppCompatActivity() {
 
         createNotificationChannel()
 
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, 18)
+        calendar.set(Calendar.MINUTE, 30)
+        calendar.set(Calendar.SECOND, 0)
+        val intentt = Intent(this, ReminderBroadcast::class.java)
+        val pendingIntentt: PendingIntent = PendingIntent.getBroadcast(this, 0, intentt, PendingIntent.FLAG_IMMUTABLE)
+
+        val alarmManager = this.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
+
+        alarmManager!!.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, 1, pendingIntentt)
+
         // Create an explicit intent for an Activity in your app
         val intent = Intent(this, LogInActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -39,17 +52,17 @@ class MainActivity : AppCompatActivity() {
             PendingIntent.FLAG_IMMUTABLE
         )
 
-        var builder = NotificationCompat.Builder(this, getString(R.string.channel_name))
-            .setSmallIcon(androidx.core.R.drawable.notification_icon_background)
-            .setContentTitle("Take daily picture!")
-            .setContentText("Don't forget to take your daily picture!")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-
-        with(NotificationManagerCompat.from(this)) {
-            notify(0, builder.build())
-        }
+//        var builder = NotificationCompat.Builder(this, getString(R.string.channel_name))
+//            .setSmallIcon(androidx.core.R.drawable.notification_icon_background)
+//            .setContentTitle("Take daily picture!")
+//            .setContentText("Don't forget to take your daily picture!")
+//            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+//            .setContentIntent(pendingIntent)
+//            .setAutoCancel(true)
+//
+//        with(NotificationManagerCompat.from(this)) {
+//            notify(0, builder.build())
+//        }
 
         startActivity(Intent(this, LogInActivity::class.java))
     }
