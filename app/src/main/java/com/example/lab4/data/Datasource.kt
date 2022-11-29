@@ -7,14 +7,14 @@ import com.example.lab4.model.Album
 
 object Datasource {
     val images_1 = mutableListOf<Int>(
-         R.drawable.img_1,
-         R.drawable.img_2,
-         R.drawable.img_3,
-         R.drawable.img_4,
-         R.drawable.img_5,
-         R.drawable.img_6,
-         R.drawable.img_7,
-         R.drawable.img_8,
+        R.drawable.img_1,
+        R.drawable.img_2,
+        R.drawable.img_3,
+        R.drawable.img_4,
+        R.drawable.img_5,
+        R.drawable.img_6,
+        R.drawable.img_7,
+        R.drawable.img_8,
         R.drawable.img_9,
         R.drawable.img_10,
         R.drawable.img_11,
@@ -38,10 +38,19 @@ object Datasource {
         R.drawable.img_29,
     )
 
-    val albumLibrary: List<Album> = listOf<Album>(
+    val albumLibrary: MutableList<Album> = mutableListOf<Album>(
         Album(
             images_1,
             "Test Album"
+        ), Album(
+            images_1,
+            "Foo Album"
+        ), Album(
+            images_1,
+            "Bar Album"
+        ), Album(
+            images_1,
+            "Fourth Album"
         )
     )
 

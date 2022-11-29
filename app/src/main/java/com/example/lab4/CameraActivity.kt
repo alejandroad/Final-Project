@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -18,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
+import java.io.File.separator
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
@@ -25,6 +27,8 @@ import java.util.concurrent.Executors
 
 
 class CameraActivity : AppCompatActivity() {
+
+    private val album_name: String = "Joe"
 
     private lateinit var binding: ActivityCameraBinding
 
@@ -38,6 +42,8 @@ class CameraActivity : AppCompatActivity() {
 
     private lateinit var storageRef: StorageReference
 
+    private lateinit var actionBar: ActionBar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraBinding.inflate(layoutInflater)
@@ -45,8 +51,10 @@ class CameraActivity : AppCompatActivity() {
 
         storageRef = FirebaseStorage.getInstance().reference
 
+        actionBar = supportActionBar!!
+        actionBar.title = "Camera"
 
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         outputDirectory = getOutputDirectory()
 
@@ -84,7 +92,7 @@ class CameraActivity : AppCompatActivity() {
 
     private fun getOutputDirectory(): File {
         val mediaDir = externalMediaDirs.firstOrNull()?.let { mFile ->
-            File(mFile, resources.getString(R.string.app_name)).apply {
+            File(mFile, "${album_name}'s " + resources.getString(R.string.app_name)).apply {
                 mkdirs()
             }
         }
@@ -116,14 +124,16 @@ class CameraActivity : AppCompatActivity() {
                         storageRef.child("users/${userID}/images/${photoFile.name}")
                     val uploadTask = picRef.putFile(savedUri)
                     uploadTask.addOnSuccessListener {
+                        Log.e("Firebase", "Image Upload success")
 
-                        storageRef.child("upload/${photoFile.name}").downloadUrl.addOnSuccessListener {
+//                        storageRef.child("upload/${photoFile.name}").downloadUrl.addOnSuccessListener {
 
-                            // TODO: implement download success and failure behaviors
+                        // TODO: implement download success and failure behaviors
+
 //                            Log.e("Firebase", "download passed")
 //                        }.addOnFailureListener {
 //                            Log.e("Firebase", "Failed in downloading")
-                        }
+//                        }
                     }.addOnFailureListener {
                         Log.e("Firebase", "Image Upload fail")
                     }

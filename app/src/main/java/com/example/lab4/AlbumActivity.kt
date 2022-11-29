@@ -14,15 +14,17 @@ public class AlbumActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAlbumListBinding
 
-    class AlbumListener: Listener{
+    class AlbumListener : Listener {
         override fun onButtonClicked(view: View, pos: Int) {
             startActivity(view.context, Intent(view.context, SlideshowActivity::class.java), null)
 
         }
 
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityAlbumListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val albumlistener = AlbumListener()
@@ -33,5 +35,9 @@ public class AlbumActivity : AppCompatActivity() {
 
         // Enable up button for backward navigation
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        binding.newAlbumButton.setOnClickListener {
+            startActivity(Intent(this, AddAlbumActivity::class.java))
+        }
     }
 }

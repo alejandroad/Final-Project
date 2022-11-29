@@ -4,37 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp"
-    android:gravity="center"
     tools:context=".ProfileActivity">
 
 
     <TextView
         android:id="@+id/welcomeTV"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/welcome_msg"
-        style="@style/TextAppearance.MaterialComponents.Headline4">
+        android:text="@string/welcome_msg">
 
     </TextView>
 
     <TextView
         android:id="@+id/login_msg"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login_user_msg"
         android:layout_marginTop="20dp"
-        android:textSize="15sp"
-        style="@style/TextAppearance.MaterialComponents.Headline4">
+        android:text="@string/login_user_msg"
+        android:textSize="15sp">
 
     </TextView>
 
     <Button
         android:id="@+id/camera"
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="@string/camera">
 
     </Button>
@@ -60,7 +60,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp">
+        android:minHeight="48dp"
+        android:text="Dark Mode">
 
     </Switch>
 
