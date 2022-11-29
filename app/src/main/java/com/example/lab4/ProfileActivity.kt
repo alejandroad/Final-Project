@@ -41,6 +41,16 @@ class ProfileActivity : AppCompatActivity() {
             checkUser()
         }
 
+
+        when (this.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+                binding.darkModeSwitch.isChecked = true
+            }
+            Configuration.UI_MODE_NIGHT_NO -> {
+                binding.darkModeSwitch.isChecked = false
+            }
+        }
+
         binding.camera.setOnClickListener {
             startActivity(Intent(this, CameraActivity::class.java))
         }
@@ -49,7 +59,7 @@ class ProfileActivity : AppCompatActivity() {
         }
         binding.darkModeSwitch.setOnClickListener {
 
-            if(binding.darkModeSwitch.isChecked) {
+            if (binding.darkModeSwitch.isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -60,7 +70,7 @@ class ProfileActivity : AppCompatActivity() {
     private fun checkUser() {
         val user = auth.currentUser
 
-        if(user != null) {
+        if (user != null) {
             // user is logged in
             val text = "Logged in as ${user.email}"
             binding.loginMsg.text = text
