@@ -84,6 +84,7 @@ class AlbumCardAdapter(
                     pics.items[0].getFile(localFile).addOnSuccessListener {
                         val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
                         holder.albumCover!!.setImageBitmap(bitmap)
+                        holder.albumCover!!.rotation = -90F
                     }
 
 //                    try {
