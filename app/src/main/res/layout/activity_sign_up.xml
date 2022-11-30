@@ -77,20 +77,23 @@
         android:text="@string/password_requirements"></TextView>
 
     <TextView
-        android:id="@+id/requirement_one"
+        android:id="@+id/length_requirement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/password_requirements"
+        android:text="@string/requirement_one"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
-        android:text="@string/bullet"></TextView>
+        android:textSize="10sp"
+        android:layout_below="@+id/password_requirements">
+
+    </TextView>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/requirement_one"
-        android:textSize="10dp"
-        android:layout_toRightOf="@id/requirement_one">
+        android:text="Password must contain one capital letter"
+        android:layout_below="@id/length_requirement"
+        android:textSize="10sp"
+        android:layout_marginTop="10dp">
 
     </TextView>
 </RelativeLayout>

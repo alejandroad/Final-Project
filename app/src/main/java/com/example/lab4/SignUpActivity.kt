@@ -64,6 +64,14 @@ class SignUpActivity : AppCompatActivity() {
         email = binding.emailA.text.toString().trim()
         password = binding.PasswordA.text.toString().trim()
 
+        var containsCapitalLetter = false
+
+        for(i in password.indices) {
+            if(password[i].isUpperCase()) {
+                containsCapitalLetter = true
+            }
+        }
+
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             // incorrect email semantics
             binding.emailA.error = "Incorrect email semantics"
@@ -73,11 +81,13 @@ class SignUpActivity : AppCompatActivity() {
         } else if (password.length < 8) {
             // password length is less than 8
             binding.PasswordA.error = "Password must be at least 8 characters long"
-        } else {
-            // password validated
-            // TODO add more password checks
+        } else if (!containsCapitalLetter) {
+            // password must contain one capital letter
+            binding.PasswordA.error = "Password must contain at least 1 capital letter"
+        }  else {
             createAccount()
         }
+
     }
 
     private fun createAccount() {
