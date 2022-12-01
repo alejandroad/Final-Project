@@ -32,7 +32,10 @@ class AddAlbumActivity : AppCompatActivity() {
         binding.confirmNewAlbumButton.setOnClickListener {
 
             val albumTitle: String = binding.albumTitle.text.toString()
-            albumLibrary.add(0, Album(images_1, albumTitle))
+            //put album
+            //TODO: add directory named albumTitle
+
+
             startActivity(Intent(this, AlbumActivity::class.java))
         }
 

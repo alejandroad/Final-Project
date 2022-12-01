@@ -1,5 +1,6 @@
 package com.example.lab4
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -28,8 +29,6 @@ import java.util.concurrent.Executors
 
 class CameraActivity : AppCompatActivity() {
 
-    private val album_name: String = "Joe"
-
     private lateinit var binding: ActivityCameraBinding
 
     private var imageCapture: ImageCapture? = null
@@ -44,12 +43,26 @@ class CameraActivity : AppCompatActivity() {
 
     private lateinit var actionBar: ActionBar
 
+    private lateinit var cameraIntent: Intent
+
+    private var saveAlbum: String = "album name"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        cameraIntent = intent
+
+        // Intent to change album to save to
+        if(cameraIntent.extras != null){
+            saveAlbum = cameraIntent.getStringExtra("album") as String
+        }else{
+            saveAlbum = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        }
+
         storageRef = FirebaseStorage.getInstance().reference
+
 
         actionBar = supportActionBar!!
         actionBar.title = "Camera"
@@ -92,7 +105,7 @@ class CameraActivity : AppCompatActivity() {
 
     private fun getOutputDirectory(): File {
         val mediaDir = externalMediaDirs.firstOrNull()?.let { mFile ->
-            File(mFile, "${album_name}'s " + resources.getString(R.string.app_name)).apply {
+            File(mFile, "${saveAlbum}'s " + resources.getString(R.string.app_name)).apply {
                 mkdirs()
             }
         }
@@ -120,8 +133,11 @@ class CameraActivity : AppCompatActivity() {
                     val userID = FirebaseAuth.getInstance().currentUser?.uid
                     val savedUri = Uri.fromFile(photoFile)
                     val msg = "Photo Saved"
+
                     val picRef: StorageReference =
-                        storageRef.child("users/${userID}/images/${photoFile.name}")
+                        storageRef.child("users/${userID}/albums/${saveAlbum}/${photoFile.name}")
+                    Log.d("Save album Name", "${saveAlbum}")
+                    Log.d("Image Save", "${picRef.path}")
                     val uploadTask = picRef.putFile(savedUri)
                     uploadTask.addOnSuccessListener {
                         Log.e("Firebase", "Image Upload success")

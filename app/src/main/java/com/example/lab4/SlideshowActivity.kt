@@ -29,6 +29,8 @@ public class SlideshowActivity : AppCompatActivity() {
         GlobalScope.launch {
             for (images in Datasource.images_1) {
                 Log.d("Slideshow", ".")
+                var ref = intent.getStringExtra("storageRef")
+
                 binding.imageView.setImageResource(images)
                 delay(500L)
             }
