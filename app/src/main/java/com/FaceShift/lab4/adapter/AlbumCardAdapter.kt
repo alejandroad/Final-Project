@@ -67,13 +67,6 @@ class AlbumCardAdapter(
     }
 
     override fun onBindViewHolder(holder: AlbumCardAdapter.AlbumCardViewHolder, position: Int) {
-//        GlobalScope.launch {
-//            while (true) {
-//                updateCount()
-//                this@AlbumCardAdapter.notifyDataSetChanged();
-//                delay(500L)
-//            }
-//        }
         updateCount()
         Log.d("OnBindViewholder", "In bind view holder")
         var userID = auth.currentUser?.uid
