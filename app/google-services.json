@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "755551760412",
-    "project_id": "faceshift-final",
-    "storage_bucket": "faceshift-final.appspot.com"
+    "project_number": "940604924304",
+    "project_id": "faceshift-15c4b",
+    "storage_bucket": "faceshift-15c4b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:755551760412:android:844f528ce055a6e3faefd9",
+        "mobilesdk_app_id": "1:940604924304:android:5a5cbbc748fe8a86afd315",
         "android_client_info": {
           "package_name": "com.FaceShift.lab4"
         }
       },
       "oauth_client": [
         {
-          "client_id": "755551760412-4rghdnbk0qfa498qvk1mlsrmhsa85d92.apps.googleusercontent.com",
+          "client_id": "940604924304-64jursuhmnpre96inkhfpgko1f711f9o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.FaceShift.lab4",
+            "certificate_hash": "f61a2b0bf722c0439e3862049653ea172042d545"
+          }
+        },
+        {
+          "client_id": "940604924304-rlbnd2cnsg962jga2berr70fc2qlm1as.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAdfSr9zRpZE-fwo3XljZzfQ44zlW5coxA"
+          "current_key": "AIzaSyCUedvhJUB6F0Kyi5q5EiFJ-2dMa30vluk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "755551760412-4rghdnbk0qfa498qvk1mlsrmhsa85d92.apps.googleusercontent.com",
+              "client_id": "940604924304-rlbnd2cnsg962jga2berr70fc2qlm1as.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -36,5 +44,4 @@
     }
   ],
   "configuration_version": "1"
-  
 }
