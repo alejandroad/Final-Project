@@ -1,19 +1,13 @@
-package com.example.lab4;
+package com.FaceShift.lab4;
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
-import com.example.lab4.adapter.AlbumCardAdapter
-import com.example.lab4.adapter.Listener
-import com.example.lab4.databinding.ActivityAlbumListBinding
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
+import com.FaceShift.lab4.adapter.AlbumCardAdapter
+import com.FaceShift.lab4.adapter.Listener
+import com.FaceShift.lab4.databinding.ActivityAlbumListBinding
 
 
 public class AlbumActivity : AppCompatActivity() {

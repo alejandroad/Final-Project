@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.lab4">
+    package="com.FaceShift.lab4">
 
     <uses-feature android:name="android.hardware.camera.any" />
 
@@ -23,14 +23,14 @@
         android:theme="@style/Theme.Lab4"
         tools:targetApi="31">
         <activity
-            android:name=".CameraActivity"
+            android:name="com.FaceShift.lab4.CameraActivity"
             android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.FaceShift.lab4.MainActivity" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.FaceShift.lab4.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,36 +39,36 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LogInActivity">
+        <activity android:name="com.FaceShift.lab4.LogInActivity">
 
         </activity>
-        <activity android:name=".SignUpActivity">
+        <activity android:name="com.FaceShift.lab4.SignUpActivity">
 
         </activity>
-        <activity android:name=".SlideshowActivity">
+        <activity android:name="com.FaceShift.lab4.SlideshowActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".AlbumActivity" />
+                android:value="com.FaceShift.lab4.AlbumActivity" />
         </activity>
 
-        <activity android:name=".ProfileActivity">
+        <activity android:name="com.FaceShift.lab4.ProfileActivity">
 
         </activity>
 
 
-        <activity android:name=".AlbumActivity">
+        <activity android:name="com.FaceShift.lab4.AlbumActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.FaceShift.lab4.MainActivity" />
         </activity>
 
-        <activity android:name=".AddAlbumActivity">
+        <activity android:name="com.FaceShift.lab4.AddAlbumActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".AlbumActivity" />
+                android:value="com.FaceShift.lab4.AlbumActivity" />
         </activity>
 
-        <receiver android:name=".ReminderBroadcast"/>
+        <receiver android:name="com.FaceShift.lab4.ReminderBroadcast"/>
 
     </application>
 

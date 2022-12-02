@@ -1,18 +1,11 @@
-package com.example.lab4
+package com.FaceShift.lab4
 
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.ActionBar
-import androidx.core.content.ContextCompat.startActivity
-import com.example.lab4.databinding.ActivityAddAlbumBinding
-import com.example.lab4.data.Datasource
-import com.example.lab4.data.Datasource.albumLibrary
-import com.example.lab4.data.Datasource.images_1
-import com.example.lab4.model.Album
+import com.FaceShift.lab4.databinding.ActivityAddAlbumBinding
 
 
 class AddAlbumActivity : AppCompatActivity() {

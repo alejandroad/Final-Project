@@ -1,4 +1,4 @@
-package com.example.lab4
+package com.FaceShift.lab4
 
 import android.content.Intent
 import android.content.res.Configuration
@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatDelegate
-import com.example.lab4.databinding.ActivityProfileBinding
+import com.FaceShift.lab4.databinding.ActivityProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

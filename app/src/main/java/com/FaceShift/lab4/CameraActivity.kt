@@ -1,4 +1,4 @@
-package com.example.lab4
+package com.FaceShift.lab4
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -15,12 +15,11 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.lab4.databinding.ActivityCameraBinding
+import com.FaceShift.lab4.databinding.ActivityCameraBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
-import java.io.File.separator
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService

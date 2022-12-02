@@ -1,9 +1,7 @@
-package com.example.lab4.data
+package com.FaceShift.lab4.data
 
-import android.graphics.drawable.Drawable
-import androidx.annotation.DrawableRes
-import com.example.lab4.R
-import com.example.lab4.model.Album
+import com.FaceShift.lab4.R
+import com.FaceShift.lab4.model.Album
 
 object Datasource {
     val images_1 = mutableListOf<Int>(

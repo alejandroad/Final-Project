@@ -1,4 +1,4 @@
-package com.example.lab4
+package com.FaceShift.lab4
 
 import org.junit.Test
 

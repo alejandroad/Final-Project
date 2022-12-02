@@ -1,4 +1,4 @@
-package com.example.lab4
+package com.FaceShift.lab4
 
 
 import android.app.AlarmManager
@@ -7,16 +7,12 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 
-import com.example.lab4.databinding.ActivityMainBinding
+import com.FaceShift.lab4.databinding.ActivityMainBinding
 import java.util.*
 
 class MainActivity : AppCompatActivity() {

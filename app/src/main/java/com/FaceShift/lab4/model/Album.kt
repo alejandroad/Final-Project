@@ -1,4 +1,4 @@
-package com.example.lab4.model
+package com.FaceShift.lab4.model
 
 data class Album(
  val album: List<Int>,

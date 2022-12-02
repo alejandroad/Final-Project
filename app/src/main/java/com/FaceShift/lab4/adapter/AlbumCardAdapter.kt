@@ -1,8 +1,7 @@
-package com.example.lab4.adapter
+package com.FaceShift.lab4.adapter
 
 import android.content.Context
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.Glide.with
-import com.example.lab4.AppGlideModule
-import com.example.lab4.R
+import com.FaceShift.lab4.R
 import java.lang.ref.WeakReference
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -24,9 +20,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.*
 import java.io.File
-import java.util.concurrent.atomic.AtomicInteger
 import kotlin.math.absoluteValue
-import kotlin.reflect.typeOf
 
 
 class AlbumCardAdapter(

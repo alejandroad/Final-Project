@@ -1,4 +1,4 @@
-package com.example.lab4
+package com.FaceShift.lab4
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -9,7 +9,7 @@ import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
-import com.example.lab4.databinding.ActivityLogInBinding
+import com.FaceShift.lab4.databinding.ActivityLogInBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

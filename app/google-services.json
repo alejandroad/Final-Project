@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:176462348920:android:38b20ef4722a77ac77238d",
         "android_client_info": {
-          "package_name": "com.example.lab4"
+          "package_name": "com.FaceShift.lab4"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "176462348920-m9cooia8l79bv4rifkheedgf1l5kbpg4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.lab4",
+            "package_name": "com.FaceShift.lab4",
             "certificate_hash": "f61a2b0bf722c0439e3862049653ea172042d545"
           }
         },
