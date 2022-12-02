@@ -32,4 +32,6 @@
     <string name="make_a_new_face_shift">Make a new Face Shift</string>
     <string name="album_title">Album Title</string>
     <string name="add_new_album">Add New Album</string>
+    <string name="add_to_album">Add to Album</string>
+    <string name="restart">Restart FaceShift</string>
 </resources>

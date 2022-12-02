@@ -43,22 +43,20 @@ class CameraActivity : AppCompatActivity() {
 
     private lateinit var actionBar: ActionBar
 
-    private lateinit var cameraIntent: Intent
-
     private var saveAlbum: String = "album name"
+    private var returnToAlbum: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        cameraIntent = intent
-
+        returnToAlbum = intent.getBooleanExtra("return", false)
         // Intent to change album to save to
-        if(cameraIntent.extras != null){
-            saveAlbum = cameraIntent.getStringExtra("album") as String
+        if(intent.extras != null){
+            saveAlbum = intent.getStringExtra("album") as String
         }else{
-            saveAlbum = FirebaseAuth.getInstance().currentUser?.uid.toString()
+            saveAlbum = FirebaseAuth.getInstance().currentUser?.uid as String
         }
 
         storageRef = FirebaseStorage.getInstance().reference
@@ -90,6 +88,13 @@ class CameraActivity : AppCompatActivity() {
         binding.btnTakePhoto.setOnClickListener()
         {
             takePhoto()
+            if(returnToAlbum){
+                ContextCompat.startActivity(
+                   this@CameraActivity,
+                    Intent(this@CameraActivity, AlbumActivity::class.java),
+                    null
+                )
+            }
         }
     }
 
@@ -141,15 +146,6 @@ class CameraActivity : AppCompatActivity() {
                     val uploadTask = picRef.putFile(savedUri)
                     uploadTask.addOnSuccessListener {
                         Log.e("Firebase", "Image Upload success")
-
-//                        storageRef.child("upload/${photoFile.name}").downloadUrl.addOnSuccessListener {
-
-                        // TODO: implement download success and failure behaviors
-
-//                            Log.e("Firebase", "download passed")
-//                        }.addOnFailureListener {
-//                            Log.e("Firebase", "Failed in downloading")
-//                        }
                     }.addOnFailureListener {
                         Log.e("Firebase", "Image Upload fail")
                     }

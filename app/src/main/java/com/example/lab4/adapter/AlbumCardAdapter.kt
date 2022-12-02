@@ -18,9 +18,15 @@ import com.example.lab4.AppGlideModule
 import com.example.lab4.R
 import java.lang.ref.WeakReference
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import kotlinx.coroutines.*
 import java.io.File
+import java.util.concurrent.atomic.AtomicInteger
+import kotlin.math.absoluteValue
+import kotlin.reflect.typeOf
 
 
 class AlbumCardAdapter(
@@ -30,35 +36,51 @@ class AlbumCardAdapter(
 
     //pull database
     val list: Listener? = listener
-    private var storage = FirebaseStorage.getInstance()
+
     private var storageRef: StorageReference = FirebaseStorage.getInstance().reference
     private var auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private var cnt = 1
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumCardViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
         val viewList: View = adapterLayout.inflate(R.layout.album_item, parent, false)
         Log.d("On create view holder", "in creating view holder")
-
         //return view to viewHolder
+        updateCount()
         return AlbumCardViewHolder(viewList, this.list)
     }
 
     override fun getItemCount(): Int {
-        var count = 1
-        storageRef.child("users/${auth.currentUser?.uid}/albums/").listAll()
-            .addOnSuccessListener { result ->
-                // go through all the files/folders
+        updateCount()
+        Log.d("Getting Item Count", "${cnt} ...")
+        return cnt
+    }
+    fun updateCount() {
 
-                Log.d("get item count", "${result.items.size}")
+        val auth: FirebaseAuth = Firebase.auth
+        var userID = auth.currentUser?.uid
+        Log.d("Updating Count", "updating ...")
+        storageRef.child("users/${userID}/albums/").listAll().addOnSuccessListener { result ->
+            // go through all the files/folders
+                if (result.prefixes.isNotEmpty()) {
+                    setCount(result.prefixes.size)
+                }
+            }
 
-            }
-            .addOnFailureListener { except ->
-                Log.d("get Item Count", "Album size 0")
-            }
-        return count
     }
 
+    private fun setCount(size: Int) {
+        cnt = size.absoluteValue
+    }
 
     override fun onBindViewHolder(holder: AlbumCardAdapter.AlbumCardViewHolder, position: Int) {
+//        GlobalScope.launch {
+//            while (true) {
+//                updateCount()
+//                this@AlbumCardAdapter.notifyDataSetChanged();
+//                delay(500L)
+//            }
+//        }
+        updateCount()
         Log.d("OnBindViewholder", "In bind view holder")
         var userID = auth.currentUser?.uid
 
@@ -73,40 +95,20 @@ class AlbumCardAdapter(
             result.prefixes[position].listAll().addOnSuccessListener { pics ->
                 if (pics.items.isNotEmpty()) {
                     Log.e("album cover", "cover: ${pics.items[0]}")
-//                    holder.albumCover?.setImageURI(storageRef.child(pics.items[0].path).downloadUrl.result)
-//                    pics.items[0].downloadUrl.toString()
 
-                    Log.e(
-                        "_____Image URL: ",
-                        "${pics.items[0].downloadUrl.toString()}"
-                    )
                     val localFile = File.createTempFile("tempImage", "jpg")
                     pics.items[0].getFile(localFile).addOnSuccessListener {
                         val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
                         holder.albumCover!!.setImageBitmap(bitmap)
                         holder.albumCover!!.rotation = -90F
                     }
-
-//                    try {
-//                        val ref = storage.getReferenceFromUrl(pics.items[0].toString())
-//                        Log.e("URL: ", "$ref")
-//                        Glide.with(context!!)
-//                            .load(pics.items[0].downloadUrl.result)
-//                            .dontAnimate()
-//                            .placeholder(R.drawable.img_14)
-//                            .into(holder.albumCover!!)
-////                        holder.albumCover!!.setImageURI(null)
-////                        holder.albumCover!!.setImageURI(Uri.parse(ref.toString()))
-//                    } catch (e: Exception) {
-//
-//                    }
-
                 }
             }
                 .addOnFailureListener { except ->
                     Log.d("album retrieve error", "${except}")
                 }
-            holder.albumName?.text = result.prefixes[position].name
+            holder.albumName?.text = result.prefixes[position].name + " " + result.prefixes.size
+
         }
             .addOnFailureListener {
                 Toast.makeText(context, "Unable to fetch album!", Toast.LENGTH_SHORT).show()
@@ -114,7 +116,6 @@ class AlbumCardAdapter(
             }
 
         // Set the image resource for the current album cover
-        //val resources = context?.resources
         holder.albumBtn?.setOnClickListener(holder)
     }
 

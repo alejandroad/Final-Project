@@ -9,6 +9,11 @@ import androidx.core.content.ContextCompat.startActivity
 import com.example.lab4.adapter.AlbumCardAdapter
 import com.example.lab4.adapter.Listener
 import com.example.lab4.databinding.ActivityAlbumListBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 
 public class AlbumActivity : AppCompatActivity() {
@@ -17,7 +22,7 @@ public class AlbumActivity : AppCompatActivity() {
 
     class AlbumListener : Listener {
         override fun onButtonClicked(view: View, pos: Int) {
-            startActivity(view.context, Intent(view.context, SlideshowActivity::class.java), null)
+            startActivity(view.context, Intent(view.context, SlideshowActivity::class.java).putExtra("position", pos), null)
 
         }
 

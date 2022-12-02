@@ -33,10 +33,7 @@ class AddAlbumActivity : AppCompatActivity() {
 
             val albumTitle: String = binding.albumTitle.text.toString()
             //put album
-            //TODO: add directory named albumTitle
-
-
-            startActivity(Intent(this, AlbumActivity::class.java))
+            startActivity(Intent(this, CameraActivity::class.java).putExtra("album", albumTitle))
         }
 
 
